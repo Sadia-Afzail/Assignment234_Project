@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+{% autoescape off %}
+<html>
+  <body style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <h2>Activate Your Account</h2>
+    <p>Hello {{ user.get_username }},</p>
+    <p>Click the link below to confirm your email address:</p>
+    <p>
+      <a href="{{ activate_url }}" style="background-color: #28a745; color: #fff; padding: 10px 20px; text-decoration: none;">Confirm Email</a>
+    </p>
+    <p>Thanks for signing up!</p>
+  </body>
 </html>
+{% endautoescape %}

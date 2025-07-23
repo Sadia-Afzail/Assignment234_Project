@@ -59,5 +59,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'User'
         verbose_name_plural = 'Users'
 
-    def __str__(self):
+    def _str_(self):
         return f"{self.email} ({self.role})"
+
+
+class WorkExperience:
+    pass

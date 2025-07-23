@@ -33,11 +33,7 @@ class TechnicalSkillForm(forms.ModelForm):
 
 class EducationForm(forms.ModelForm):
     class Meta:
-        model = Education
-        fields = ['degree', 'institution', 'location', 'start_date', 'end_date', 'gpa', 'description', 'is_visible']
-
-class TechnologyForm(forms.ModelForm):
-    class Meta:
+class Meta:
         model = Technology
         fields = ['name', 'category', 'icon']
 
@@ -59,4 +55,4 @@ class AwardForm(forms.ModelForm):
 class LanguageForm(forms.ModelForm):
     class Meta:
         model = Language
-        fields = ['name', 'proficiency', 'certification', 'is_visible']
+        fields = ['name', 'proficiency', 'certification', 'is_visible']

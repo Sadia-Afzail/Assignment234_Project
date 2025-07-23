@@ -1,3 +1,5 @@
+
+
 """
 Django settings for core project.
 
@@ -20,7 +22,7 @@ env = environ.Env(
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(_file_).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
@@ -35,7 +37,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
+'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -74,7 +76,7 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
+'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -91,7 +93,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
@@ -109,8 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
+{
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
@@ -165,7 +166,7 @@ SPECTACULAR_SETTINGS = {
         {
             'jwtAuth': {
                 'type': 'http',
-                'scheme': 'bearer',
+'scheme': 'bearer',
                 'bearerFormat': 'JWT',
             }
         }
@@ -203,13 +204,28 @@ SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
+
+AUTHEAUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of allauth
     'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by email
+    # allauth specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_LOGIN_REDIRECT_URL = "api/v1/swagger/"
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
 LOGIN_URL = '/web/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
@@ -224,3 +240,4 @@ EMAIL_HOST_PASSWORD = '588663c1d79800'
 EMAIL_PORT = '2525'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# ACCOUNT_LOGIN_REDIRECT_URL = "api/v1/swagger/"

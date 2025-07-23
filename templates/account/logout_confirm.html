@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load i18n %}
 
-</body>
-</html>
+{% block content %}
+<div class="container mt-5">
+  <h2>Confirm Logout</h2>
+  <p>Are you sure you want to log out?</p>
+  <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, log me out</button>
+  </form>
+</div>
+{% endblock %}
